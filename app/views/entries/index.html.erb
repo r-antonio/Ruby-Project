@@ -1,0 +1,135 @@
+<p id="notice"><%= notice %></p>
+
+<h3>List of <%= @user.name %></h3>
+
+<table>
+  <thead>
+    <tr>
+      <th>Medium</th>
+      <th>Caps</th>
+      <th>Rating</th>
+      <th>State</th>
+      <th>Date start</th>
+      <th>Date finish</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @entries.each do |entry| %>
+      <tr>
+        <td><%= link_to entry.medium.title, medium_path(entry.medium) %></td>
+        <%= content_tag(:td, entry.caps.to_s+"/"+entry.medium.episodes.to_s, id: 'caps'+entry.id.to_s) %>
+        <%= content_tag(:td, entry.rating, id: 'rating'+entry.id.to_s) %>
+        <%= content_tag(:td, entry.state, id: 'state'+entry.id.to_s) %>
+        <td><%= entry.date_start %></td>
+        <td><%= entry.date_finish %></td>
+        <td>
+        <% if current_user == @user %>
+        <% if entry.caps != entry.medium.episodes %>
+          <%= link_to 'Add chapter', "", :id => "ac"+entry.id.to_s, :class => "addchapter", :'data-id' => entry.id %>
+        <% end %>
+        </td>
+        <td><a href="#rate-modal" class="modal-trigger rate-btn" data-eid="<%= entry.id %>" data-rating="<%= entry.rating %>" data-state="<%= entry.state %>" >Edit</a></td>
+        <td><%= link_to 'Destroy', entry, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+    <% end %>
+  </tbody>
+</table>
+<% if current_user == @user %>
+<div id="rate-modal" class="modal">
+  <div class="modal-content">
+    <h4>Edit</h4>
+    <div class="input-field col s12">
+      <input id="eid" type="hidden" value="">
+      <select id="rating-value">
+        <option value="" disabled selected>Choose your option</option>
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+        <option value="4">4</option>
+        <option value="5">5</option>
+        <option value="6">6</option>
+        <option value="7">7</option>
+        <option value="8">8</option>
+        <option value="9">9</option>
+        <option value="10">10</option>
+      </select>
+      <label>Select a Rating</label>
+    </div>
+    <div class="input-field col s12">
+      <select id="select-opt">
+        <%= options_for_select(@states_for_select, disabled: "-1") %>
+      </select>
+      <label>Select a State</label>
+    </div>
+  </div>
+  <div class+"modal-footer">
+    <a href="#" class="modal-action modal-close waves-effect waves-green btn-flat ">Submit</a>
+  </div>
+</div>
+<script>
+  $(document).ready(function() {
+    $('select').material_select();
+    $('.modal').modal();
+    $('.rate-btn').click(function(evt){
+      $this = $(this);
+      $('#eid').attr('value',$this.attr('data-eid'));
+      var estado = $this.attr('data-state');
+      var score = $this.attr('data-rating');
+      $('#rating-value').val(score);
+      $('#rating-value').material_select();
+      $('#select-opt').val(estado);
+      $('#select-opt').material_select();
+    });
+    $('.modal-action').click(function(evt){
+      var entry_id = $('#eid').val();
+      $.ajax({
+        url: '<%= ajax_edit_entry_path %>',
+        type: 'POST',
+        dataType: 'json',
+        data: {
+          entry_id: entry_id,
+          rating: $('#rating-value').val(),
+          state: $('#select-opt').val()
+        },
+        success: function(data){
+          if(data.code == '0'){
+            $('#rating'+entry_id).text(data.rating);
+            $('#state'+entry_id).text(data.state);
+          }
+        }
+      });
+    });
+    $('.addchapter').click(function(evt){
+      evt.preventDefault();
+      var $this = $(this);
+      var entry_id = $this.attr('data-id');
+        $.ajax({
+          url: '<%= ajax_add_chapter_path %>',
+          type: 'POST',
+          dataType: 'json',
+          data: {
+            entry_id: entry_id
+          },
+          success: function(data){
+            if(data.code != -1){
+              var td = $('#caps'+entry_id);
+              var txt = td.text().split('/');
+              txt[0] = data.caps;
+              td.text(txt.join("/"));
+              if(data.code == 4){
+                $('#state'+entry_id).text("3");
+                $('#ac'+entry_id).remove();
+              }
+              console.log(data);
+            }
+          }
+        });
+    });
+  });
+</script>
+<% end %>
+<br>
+

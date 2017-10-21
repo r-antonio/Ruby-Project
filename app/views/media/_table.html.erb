@@ -1,0 +1,28 @@
+<table>
+  <thead>
+    <tr>
+      <th>Poster</th>
+      <th>Titulo</th>
+      <th>Runtime</th>
+      <th>Release Date</th>
+    </tr>
+  </thead>
+
+  <tbody>
+  <% @media.each do |medium| %>
+    <tr>
+      <td><%= image_tag(medium.poster, :size => '60x80') %></td>
+      <td><%= link_to medium.title, medium_path(medium) %></td>
+      <td><%= medium.runtime %></td>
+      <td><%= medium.released %></td>
+      <td>
+        <% if can? :update, medium %>
+        <td><%= link_to 'Edit', edit_medium_path(medium), class: 'btn btn-info btn-xs' %></td>
+        <td><%= link_to 'Destroy', medium, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger btn-xs' %></td>
+        <% end %>
+      </td>
+    </tr>
+  <% end %>
+  </tbody>
+</table>
+<%= paginate @media %>

@@ -1,0 +1,57 @@
+<p id="notice"><%= notice %></p>
+<div class="row">
+  <div class="col s12">
+  <p>
+    <strong>Name:</strong>
+    <%= @person.name %>
+  </p>
+
+  <p>
+    <strong>Bio:</strong>
+    <%= @person.bio %>
+  </p>
+
+  <% if @person.actings.size > 0 %>
+  <table class"striped">
+    <thead>
+      <tr>
+        <th>Character</th>
+        <th>Media</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @person.actings.each do |acting| %>
+        <tr>
+          <td><%= link_to acting.character.name, character_path(acting.character) %></td>
+          <td><%= link_to acting.medium.title, medium_path(acting.medium) %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+  <% end %>
+
+  <% if @person.roles.size > 0 %>
+  <table class"striped">
+    <thead>
+      <tr>
+        <th>Role</th>
+        <th>Medium</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @person.roles.each do |role| %>
+        <tr>
+          <td><%= role.role %></td>
+          <td><%= link_to role.medium.title, medium_path(role.medium) %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+  <% end %>
+
+  <% if can? :update, @person %>
+    <%= link_to 'Edit', edit_person_path(@person) %> |
+  <% end %>
+  <%= link_to 'Back', url_for(:back), class: 'btn btn-success' %>
+  </div>
+</div>

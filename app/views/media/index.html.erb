@@ -1,0 +1,13 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Media</h1>
+
+<%= render 'table', media: @media %>
+
+<br>
+
+<% if can? :create, @media %>
+<%= link_to 'New Medium', new_medium_path, class: 'btn btn-success' %>
+<% end %>
+
+<%= link_to 'Back', url_for(:back), class: 'btn btn-success' %>

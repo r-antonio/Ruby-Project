@@ -1,0 +1,57 @@
+<script>
+$(document).ready(function() {
+    $('select').material_select();
+  });
+</script>
+<%= form_with(model: entry, local: true) do |form| %>
+  <% if entry.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(entry.errors.count, "error") %> prohibited this entry from being saved:</h2>
+
+      <ul>
+      <% entry.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :user_id %>
+    <%= form.select :user_id, options_for_select(User.all.map{|u|[u.email, u.id]}, current_user.id) %>
+  </div>
+
+  <div class="field">
+    <%= form.label :medium_id %>
+    <%= form.select :medium_id, options_for_select(Medium.all.map{|m|[m.title, m.id]}) %>
+  </div>
+
+  <div class="field">
+    <%= form.label :caps %>
+    <%= form.number_field :caps, id: :entry_caps %>
+  </div>
+
+  <div class="field">
+    <%= form.label :rating %>
+    <%= form.number_field :rating, id: :entry_rating %>
+  </div>
+
+  <div class="field">
+    <%= form.label :state %>
+    <%= form.text_field :state, id: :entry_state %>
+  </div>
+
+  <div class="field">
+    <%= form.label :date_start %>
+    <%= form.datetime_select :date_start, id: :entry_date_start %>
+  </div>
+
+  <div class="field">
+    <%= form.label :date_finish %>
+    <%= form.datetime_select :date_finish, id: :entry_date_finish %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

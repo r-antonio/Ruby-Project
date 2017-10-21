@@ -1,0 +1,39 @@
+<p id="notice"><%= notice %></p>
+<div class="row">
+  <div class="col s12">
+
+    <p>
+      <strong>Name:</strong>
+      <%= @character.name %>
+    </p>
+
+    <p>
+      <strong>Bio:</strong>
+      <%= @character.bio %>
+    </p>
+
+    <% if @character.actings.size > 0 %>
+      <table class"striped">
+        <thead>
+          <tr>
+            <th>Actor</th>
+            <th>Media</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @character.actings.each do |acting| %>
+            <tr>
+              <td><%= link_to acting.person.name, person_path(acting.person) %></td>
+              <td><%= link_to acting.medium.title, medium_path(acting.medium) %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    <% end %>
+
+    <% if can? :update, @character %>
+    <%= link_to 'Edit', edit_character_path(@character) %> |
+    <% end %>
+    <%= link_to 'Back', url_for(:back), class: 'btn btn-success' %>
+  </div>
+</div>

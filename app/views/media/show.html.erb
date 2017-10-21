@@ -1,0 +1,107 @@
+<div class="row">
+  <div class="col s4">
+    <%= image_tag(@medium.poster, :size => '300x500') %>
+  </div>
+  <div class="col s8">
+    <p id="notice"><%= notice %></p>
+
+    <p>
+      <strong>Imdb:</strong>
+      <%= @medium.imdb %>
+    </p>
+
+    <p>
+      <strong>Title:</strong>
+      <%= @medium.title %>
+    </p>
+
+    <p>
+      <strong>Rated:</strong>
+      <%= @medium.rated %>
+    </p>
+
+    <p>
+      <strong>Released:</strong>
+      <%= @medium.released %>
+    </p>
+
+    <p>
+      <strong>Runtime:</strong>
+      <%= @medium.runtime %>
+    </p>
+
+    <p>
+      <strong>Synopsis:</strong>
+      <%= @medium.synopsis %>
+    </p>
+
+    <p>
+      <strong>Airing:</strong>
+      <%= @medium.airing %>
+    </p>
+
+    <p>
+      <strong>Airing time:</strong>
+      <%= @medium.airing_time %>
+    </p>
+
+    <p>
+      <strong>Serie:</strong>
+      <%= @medium.serie %>
+    </p>
+
+    <% if current_user.present? %>
+      <div class="input-field col s12">
+        <select id="select-opt" data-id="<%= @medium.id %>">
+          <%= options_for_select(@states_for_select, selected: @state, disabled: "-1") %>
+        </select>
+      </div>
+      <script>
+        $(document).ready(function() {
+          $('select').material_select();
+
+          $('#select-opt').on('change',function(){
+            var $this = $(this);
+            if($this.val() != "-1"){
+              $.ajax({
+                url: '<%= ajax_change_entry_state_path %>',
+                type: 'POST',
+                dataType: 'json',
+                data: {
+                  media_id: $this.attr('data-id'),
+                  state_id: $this.val()
+                },
+                success: function(data){
+                  console.log(data);
+                }
+              });
+            }
+          });
+        });
+      </script>
+    <% end %>
+  </div>
+</div>
+<div class="row">
+  <% if @medium.actings.size > 0 %>
+  <div class"col s6">
+    <%= render 'actings/actings', actings: @medium.actings %>
+  </div>
+  <% end %>
+  <% if can? :create, @acting %>
+    <%= link_to 'Add Acting', new_medium_acting_path(@medium), class: 'btn btn-success' %>
+  <% end %>
+  <% if @medium.roles.size > 0 %>
+  <div class"col s6">
+    <%= render 'roles/roles', roles: @medium.roles %>
+  </div>
+  <% end %>
+  <% if can? :create, @role %>
+    <%= link_to 'Add Role', new_medium_role_path(@medium), class: 'btn btn-success' %>
+  <% end %>
+</div>
+<% if can? :update, @medium %>
+<%= link_to 'Edit', edit_medium_path(@medium), class: 'btn btn-success' %> |
+<% end %>
+<%= link_to 'Back', url_for(:back), class: 'btn btn-success' %>
+	

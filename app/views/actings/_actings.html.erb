@@ -1,0 +1,16 @@
+<table class"striped">
+  <thead>
+    <tr>
+      <th>Character</th>
+      <th>Actor</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% actings.each do |acting| %>
+      <tr>
+        <td><%= link_to acting.character.name, character_path(acting.character) %></td>
+        <td><%= link_to acting.person.name, person_path(acting.person) %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

@@ -1,0 +1,25 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  imdb: MyString
+  title: MyString
+  rated: MyString
+  released: 2017-09-04
+  runtime: 1
+  synopsis: MyText
+  airing: false
+  airing_time: 2017-09-04 15:52:47
+  serie: false
+  poster: MyString
+
+two:
+  imdb: MyString
+  title: MyString
+  rated: MyString
+  released: 2017-09-04
+  runtime: 1
+  synopsis: MyText
+  airing: false
+  airing_time: 2017-09-04 15:52:47
+  serie: false
+  poster: MyString

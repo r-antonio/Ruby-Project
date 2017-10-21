@@ -1,0 +1,39 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>User:</strong>
+  <%= @entry.user.email %>
+</p>
+
+<p>
+  <strong>Medium:</strong>
+  <%= @entry.medium.title %>
+</p>
+
+<p>
+  <strong>Caps:</strong>
+  <%= @entry.caps %>/<%= @entry.medium.episodes	 %>
+</p>
+
+<p>
+  <strong>Rating:</strong>
+  <%= @entry.rating %>
+</p>
+
+<p>
+  <strong>State:</strong>
+  <%= @entry.state %>
+</p>
+
+<p>
+  <strong>Date start:</strong>
+  <%= @entry.date_start %>
+</p>
+
+<p>
+  <strong>Date finish:</strong>
+  <%= @entry.date_finish %>
+</p>
+
+<%= link_to 'Edit', edit_entry_path(@entry) %> |
+<%= link_to 'Back', entries_path %>

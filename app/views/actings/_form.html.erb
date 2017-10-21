@@ -1,0 +1,37 @@
+<%= form_with(model: [acting.medium,acting], local: true) do |form| %>
+  <% if acting.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(acting.errors.count, "error") %> prohibited this acting from being saved:</h2>
+
+      <ul>
+      <% acting.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :medium_id %>
+    <%= form.select :medium_id, options_for_select(Medium.all.map{|m|[m.title, m.id]}, acting.medium.id) %>
+  </div>
+
+  <div class="field">
+    <%= form.label :character_id %>
+    <%= form.select :character_id, options_for_select(Character.all.map{|c|[c.name, c.id]}) %>
+  </div>
+
+  <div class="field">
+    <%= form.label :person_id %>
+    <%= form.select :person_id, options_for_select(Person.all.map{|p|[p.name, p.id]}) %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>
+<script>
+$(document).ready(function() {
+    $('select').material_select();
+  });
+</script>
