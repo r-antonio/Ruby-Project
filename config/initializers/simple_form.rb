@@ -166,4 +166,10 @@ SimpleForm.setup do |config|
 
   # Defines which i18n scope will be used in Simple Form.
   # config.i18n_scope = 'simple_form'
+  config.wrappers "my_checkbox", tag: 'div', class: "col s4", error_class: 'has-error' do |b|
+    b.use :input
+    b.use :label
+    b.use :error, wrap_with: { tag: 'span', class: 'help-block' }
+    b.use :hint,  wrap_with: { tag: 'p', class: 'help-block' }
+  end
 end

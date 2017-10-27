@@ -1,21 +1,62 @@
-<%= simple_form_for(@medium) do |f| %>
-  <%= f.error_notification %>
+<%= form_with(model: medium, local: true) do |form| %>
+  <% if medium	.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(medium.errors.count, "error") %> prohibited this medium from being saved:</h2>
 
-  <div class="form-inputs">
-    <%= f.input :imdb %>
-    <%= f.input :title %>
-    <%= f.input :synopsis %>
-    <%= f.input :airing %>
-    <%= f.input :airing_time %>
-    <%= f.input :serie %>
-    <%= f.input :runtime %>
-    <%= f.input :released %>
-    <%= f.input :rated %>
-    <%= f.input :poster %>
-    <%= f.input :episodes %>
+      <ul>
+      <% medium.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :imdb %>
+    <%= form.text_field :imdb, id: :imdb %>
+  </div>
+  <div class="field">
+    <%= form.label :title %>
+    <%= form.text_field :title, id: :title %>
+  </div>
+  <div class="field">
+    <%= form.label :synopsis %>
+    <%= form.text_area :synopsis, id: :synopsis %>
+  </div>
+  <div class="field">
+    <%= form.check_box :airing, id: :airing %>
+    <%= form.label :airing, for: :airing %>
+  </div>
+  <div class="field">
+    <%= form.label :airing_time %>
+    <%= form.datetime_field :airing_time, id: :airing_time %>
+  </div>
+  <div class="field">
+    <%= form.check_box :serie, id: :serie %>
+    <%= form.label :serie, for: :serie %>
+  </div>
+  <div class="field">
+    <%= form.label :runtime %>
+    <%= form.number_field :runtime, id: :runtime %>
+  </div>
+  <div class="field">
+    <%= form.label :released %>
+    <%= form.date_field :released, id: :released %>
+  </div>
+  <div class="field">
+    <%= form.label :rated %>
+    <%= form.text_field :rated, id: :rated %>
+  </div>
+  <div class="field">
+    <%= form.label :poster %>
+    <%= form.url_field :poster, id: :poster %>
+  </div>
+  <div class="field">
+    <%= form.label :episodes %>
+    <%= form.number_field :episodes, id: :episodes %>
   </div>
 
   <div class="form-actions">
-    <%= f.button :submit %>
+    <%= form.button :submit %>
   </div>
 <% end %>

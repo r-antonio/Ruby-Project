@@ -40,10 +40,12 @@
       <%= @medium.airing %>
     </p>
 
+<% if @medium.airing %>
     <p>
       <strong>Airing time:</strong>
       <%= @medium.airing_time %>
     </p>
+<% end %>
 
     <p>
       <strong>Serie:</strong>
