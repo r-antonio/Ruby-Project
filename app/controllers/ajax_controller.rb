@@ -8,6 +8,9 @@ class AjaxController < ApplicationController
     if not ['2','3'].include?(@entry.state) and params[:state_id] == '2'
       @entry.date_start = Date.today
     elsif @entry.state != '3' and params[:state_id] == '3'
+        if @entry.date_start == nil
+          @entry.date_start = Date.today
+        end
         @entry.date_finish = Date.today
         @entry.caps = @entry.medium.episodes
     end
