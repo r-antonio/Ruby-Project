@@ -1,17 +1,15 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  user: one
-  medium: one
-  caps: 1
-  rating: 1
-  state: MyString
+  user: normal
+  medium: padrino
+  caps: 0
+  state: 1
   date_start: 2017-09-04 16:43:28
-  date_finish: 2017-09-04 16:43:28
 
 two:
   user: two
-  medium: two
+  medium: padrino
   caps: 1
   rating: 1
   state: MyString

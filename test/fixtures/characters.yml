@@ -1,11 +1,43 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-one:
-  name: MyString
-  surname: MyString
-  bio: MyText
+luke:
+  name: Luke Skywalker
+  bio: TestBio...
 
-two:
-  name: MyString
-  surname: MyString
-  bio: MyText
+han:
+  name: Han Solo
+  bio: BioString
+
+leia:
+  name: Leia Organa
+  bio: BioTest
+
+sam:
+  name: Sam Witwicky
+  bio: BioTest
+
+andy:
+  name: Andy Dufresne
+  bio: BioTest
+
+red:
+  name: Ellis Boyd Redding
+  bio: BioTest
+
+don_corleone:
+  name: Don Vito Corleone
+  bio: BioTest
+
+michael:
+  name: Michael Corleone
+  bio: BioTest
+
+sin_nombre:
+  bio: BioTest
+
+sin_bio:
+  name: Test Character
+
+nombre_largo:
+  name: Este nombre deberia ser mayor a 60 caracteres y por lo tanto da error
+  bio: BioTest

@@ -1,8 +1,12 @@
 require 'test_helper'
 
-class CharactersControllerTest < ActionDispatch::IntegrationTest
+class CharactersControllerTest < ActionController::TestCase
+
+  include Devise::Test::ControllerHelpers
+
   setup do
-    @character = characters(:one)
+    @character = characters(:luke)
+    sign_in users(:admin)
   end
 
   test "should get index" do
@@ -17,7 +21,7 @@ class CharactersControllerTest < ActionDispatch::IntegrationTest
 
   test "should create character" do
     assert_difference('Character.count') do
-      post characters_url, params: { character: { bio: @character.bio, name: @character.name, surname: @character.surname } }
+      post characters_url, params: { character: { bio: @character.bio, name: @character.name } }
     end
 
     assert_redirected_to character_url(Character.last)
@@ -34,7 +38,7 @@ class CharactersControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should update character" do
-    patch character_url(@character), params: { character: { bio: @character.bio, name: @character.name, surname: @character.surname } }
+    patch character_url(@character), params: { character: { bio: @character.bio, name: @character.name } }
     assert_redirected_to character_url(@character)
   end
 

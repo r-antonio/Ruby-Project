@@ -5,11 +5,11 @@ class Medium < ApplicationRecord
   validates :title, presence: true, length: { maximum: 140 }
   validates :rated, presence: true, length: { minimum: 1, maximum: 3 }
   validates :released, presence: true
-  validates :runtime, numericality: { only_integer: true }
+  validates :runtime, presence:true, numericality: { only_integer: true }
   validates :synopsis, presence: true, length: { maximum: 1000 }
-  validates :airing, presence: true
-  validates :aiting_time, presence: true, if: :airing?
-  validates :serie, presence: true
+  validates_inclusion_of :airing, in: [false,true]
+  validates :airing_time, presence: true, if: :airing?
+  validates_inclusion_of :serie, in: [false,true]
   validates :poster, presence: true
   validates :episodes, presence: true, numericality: { only_integer: true }
 end

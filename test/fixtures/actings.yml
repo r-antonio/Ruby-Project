@@ -1,11 +1,41 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  person_id: one
-  character_id: one
-  medium_id: one
+  person_id: hamill
+  character_id: luke
+  medium_id: star_wars
 
 two:
-  person_id: two
-  character_id: two
-  medium_id: two
+  person_id: ford
+  character_id: han
+  medium_id: star_wars
+
+three:
+  person_id: fisher
+  character_id: leia
+  medium_id: star_wars
+
+four:
+  person_id: lebouf
+  character_id: sam
+  medium_id: transformers
+
+five:
+  person_id: robbins
+  character_id: andy
+  medium_id: shawshank
+
+six:
+  person_id: freeman
+  character_id: red
+  medium_id: shawshank
+
+seven:
+  person_id: brando
+  character_id: don_corleone
+  medium_id: padrino
+
+eight:
+  person_id: pacino
+  character_id: michael
+  medium_id: padrino

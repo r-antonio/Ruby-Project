@@ -1,8 +1,12 @@
 require 'test_helper'
 
-class MediaControllerTest < ActionDispatch::IntegrationTest
+class MediaControllerTest < ActionController::TestCase
+
+  include Devise::Test::ControllerHelpers
+
   setup do
-    @medium = media(:one)
+    @medium = media(:padrino)
+    sign_in users(:admin)
   end
 
   test "should get index" do

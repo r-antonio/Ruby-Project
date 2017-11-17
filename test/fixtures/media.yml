@@ -1,25 +1,49 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-one:
-  imdb: MyString
-  title: MyString
-  rated: MyString
-  released: 2017-09-04
-  runtime: 1
-  synopsis: MyText
+transformers:
+  imdb: tt0418279
+  title: Transformers
+  rated: PG
+  released: 2007-07-03
+  runtime: 144
+  synopsis: An ancient struggle between two Cybertronian races...
   airing: false
-  airing_time: 2017-09-04 15:52:47
   serie: false
-  poster: MyString
+  poster: https://images-na.ssl-images-amazon.com/images/M/MV5BNDg1NTU2OWEtM2UzYi00ZWRmLWEwMTktZWNjYWQ1NWM1OThjXkEyXkFqcGdeQXVyMTQxNzMzNDI@._V1_.jpg
+  episodes: 1
 
-two:
-  imdb: MyString
-  title: MyString
-  rated: MyString
-  released: 2017-09-04
-  runtime: 1
-  synopsis: MyText
+star_wars:
+  imdb: tt0076759
+  title: "Star Wars: Episode IV - A New Hope"
+  rated: PG
+  released: 1978-05-25
+  runtime: 121
+  synopsis: Some synopsis
   airing: false
-  airing_time: 2017-09-04 15:52:47
   serie: false
-  poster: MyString
+  poster: https://images-na.ssl-images-amazon.com/images/M/MV5BYTUwNTdiMzMtNThmNS00ODUzLThlMDMtMTM5Y2JkNWJjOGQ2XkEyXkFqcGdeQXVyNzQ1ODk3MTQ@._V1_SX300.jpg
+  episodes: 1
+
+shawshank:
+  imdb: tt0111161
+  title: Shawshank Redemption
+  rated: R
+  released: 1994-10-14
+  runtime: 140
+  synopsis: Some synopsis
+  airing: false
+  serie: false
+  poster: https://images-na.ssl-images-amazon.com/images/M/MV5BODU4MjU4NjIwNl5BMl5BanBnXkFtZTgwMDU2MjEyMDE@._V1_.jpg
+  episodes: 1
+
+padrino:
+  imdb: tt0068646
+  title: The Godfather
+  rated: R
+  released: 1972-03-24
+  runtime: 175
+  synopsis: SomeSynopsis
+  airing: false
+  serie: false
+  poster: https://images-na.ssl-images-amazon.com/images/M/MV5BZTRmNjQ1ZDYtNDgzMy00OGE0LWE4N2YtNTkzNWQ5ZDhlNGJmL2ltYWdlL2ltYWdlXkEyXkFqcGdeQXVyNjU0OTQ0OTY@._V1_.jpg
+  episodes: 1

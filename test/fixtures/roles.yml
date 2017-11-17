@@ -1,11 +1,26 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  person_id: one
-  medium_id: one
-  role: MyString
+  person_id: coppola
+  medium_id: padrino
+  role: Director
 
 two:
-  person_id: two
-  medium_id: two
-  role: MyString
+  person_id: puzo
+  medium_id: padrino
+  role: Writer
+
+three:
+  person_id: bay
+  medium_id: transformers
+  role: Director
+
+four:
+  person_id: king
+  medium_id: shawshank
+  role: Writer
+
+five:
+  person_id: darabont
+  medium_id: shawshank
+  role: Director

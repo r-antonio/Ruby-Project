@@ -1,11 +1,67 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-one:
-  name: MyString
-  surname: MyString
-  bio: MyText
+hamill:
+  name: Mark Hamill
+  bio: BioTest
 
-two:
-  name: MyString
-  surname: MyString
-  bio: MyText
+ford:
+  name: Harrison Ford
+  bio: BioTest
+
+fisher:
+  name: Carrie Fisher
+  bio: BioTest
+
+lucas:
+  name: George Lucas
+  bio: BioTest
+
+bay:
+  name: Michael Bay
+  bio: BioTest
+
+lebouf:
+  name: Shia Lebouf
+  bio: BioTest
+
+darabont:
+  name: Frank Darabont
+  bio: BioTest
+
+king:
+  name: Stephen King
+  bio: BioTest
+
+robbins:
+  name: Tim Robbins
+  bio: BioTest
+
+freeman:
+  name: Morgan Freeman
+  bio: BioTest
+
+coppola:
+  name: Francis Ford Coppola
+  bio: SomeBio
+
+brando:
+  name: Marlon Brando
+  bio: SomeBio
+
+pacino:
+  name: Al Pacino
+  bio: TestBio
+
+puzo:
+  name: Mario Puzo
+  bio: SomeBio
+
+sin_name:
+  bio: TestBio
+
+sin_bio:
+  name: Un Nombre
+
+nombre_largo:
+  name: Este nombre deberia ser demasiado largo y fallar el test por la limitacion de caracteres
+  bio: Test bio
