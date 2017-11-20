@@ -10,43 +10,43 @@ class CharactersControllerTest < ActionController::TestCase
   end
 
   test "should get index" do
-    get characters_url
+    get :index
     assert_response :success
   end
 
   test "should get new" do
-    get new_character_url
+    get :new
     assert_response :success
   end
 
   test "should create character" do
     assert_difference('Character.count') do
-      post characters_url, params: { character: { bio: @character.bio, name: @character.name } }
+      post :create, params: { character: { bio: @character.bio, name: @character.name } }
     end
 
-    assert_redirected_to character_url(Character.last)
+    assert_redirected_to character_path(Character.last)
   end
 
   test "should show character" do
-    get character_url(@character)
+    get :show, params: { id: @character.id }
     assert_response :success
   end
 
   test "should get edit" do
-    get edit_character_url(@character)
+    get :edit, params: { id: @character.id }
     assert_response :success
   end
 
   test "should update character" do
-    patch character_url(@character), params: { character: { bio: @character.bio, name: @character.name } }
-    assert_redirected_to character_url(@character)
+    patch :update, params: { id: @character.id, character: { bio: @character.bio, name: @character.name } }
+    assert_redirected_to character_path(@character)
   end
 
   test "should destroy character" do
     assert_difference('Character.count', -1) do
-      delete character_url(@character)
+      delete :destroy, params: { id: @character.id }
     end
 
-    assert_redirected_to characters_url
+    assert_redirected_to characters_path
   end
 end

@@ -47,3 +47,15 @@ padrino:
   serie: false
   poster: https://images-na.ssl-images-amazon.com/images/M/MV5BZTRmNjQ1ZDYtNDgzMy00OGE0LWE4N2YtNTkzNWQ5ZDhlNGJmL2ltYWdlL2ltYWdlXkEyXkFqcGdeQXVyNjU0OTQ0OTY@._V1_.jpg
   episodes: 1
+
+batman:
+  imdb: tt0468569
+  title: The Dark Knight
+  rated: PG
+  released: 2008-07-18
+  runtime: 152
+  synopsis: SomeSynopsis
+  airing: false
+  serie: false
+  poster: https://images-na.ssl-images-amazon.com/images/M/MV5BMTMxNTMwODM0NF5BMl5BanBnXkFtZTcwODAyMTk2Mw@@._V1_.jpg
+  episodes: 1

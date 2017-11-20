@@ -10,43 +10,43 @@ class PeopleControllerTest < ActionController::TestCase
   end
 
   test "should get index" do
-    get people_url
+    get :index
     assert_response :success
   end
 
   test "should get new" do
-    get new_person_url
+    get :new
     assert_response :success
   end
 
   test "should create person" do
     assert_difference('Person.count') do
-      post people_url, params: { person: { bio: @person.bio, name: @person.name } }
+      post :create, params: { person: { bio: @person.bio, name: @person.name } }
     end
 
-    assert_redirected_to person_url(Person.last)
+    assert_redirected_to person_path(Person.last)
   end
 
   test "should show person" do
-    get person_url(@person)
+    get :show, params: { id: @person.id }
     assert_response :success
   end
 
   test "should get edit" do
-    get edit_person_url(@person)
+    get :edit, params: { id: @person.id }
     assert_response :success
   end
 
   test "should update person" do
-    patch person_url(@person), params: { person: { bio: @person.bio, name: @person.name } }
-    assert_redirected_to person_url(@person)
+    patch :update, params: { id: @person.id, person: { bio: @person.bio, name: @person.name } }
+    assert_redirected_to person_path(@person)
   end
 
   test "should destroy person" do
     assert_difference('Person.count', -1) do
-      delete person_url(@person)
+      delete :destroy, params: { id: @person.id }
     end
 
-    assert_redirected_to people_url
+    assert_redirected_to people_path
   end
 end
