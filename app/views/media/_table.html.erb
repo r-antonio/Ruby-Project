@@ -11,7 +11,7 @@
   <tbody>
   <% @media.each do |medium| %>
     <tr>
-      <td><%= image_tag(medium.poster, :size => '60x80') %></td>
+      <td><%= image_tag(medium.image.image.url, :size => '60x80') %></td>
       <td><%= link_to medium.title, medium_path(medium) %></td>
       <td><%= medium.runtime %></td>
       <td><%= medium.released %></td>

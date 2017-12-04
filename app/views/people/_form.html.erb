@@ -1,4 +1,4 @@
-<%= form_with(model: person, local: true) do |form| %>
+<%= form_with(model: person, local: true, :html => { :multipart => true }) do |form| %>
   <% if person.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(person.errors.count, "error") %> prohibited this person from being saved:</h2>
@@ -19,6 +19,11 @@
   <div class="field">
     <%= form.label :bio %>
     <%= form.text_area :bio, id: :person_bio %>
+  </div>
+
+  <div class="field">
+    <%= form.label :image %>
+    <%= file_field_tag "images[]", type: :file, multiple: false %>
   </div>
 
   <div class="actions">

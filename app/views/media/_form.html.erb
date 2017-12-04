@@ -1,4 +1,4 @@
-<%= form_with(model: medium, local: true) do |form| %>
+<%= form_with(model: medium, local: true, :html => { :multipart => true }) do |form| %>
   <% if medium	.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(medium.errors.count, "error") %> prohibited this medium from being saved:</h2>
@@ -47,10 +47,12 @@
     <%= form.label :rated %>
     <%= form.text_field :rated, id: :rated %>
   </div>
+
   <div class="field">
-    <%= form.label :poster %>
-    <%= form.url_field :poster, id: :poster %>
+    <%= form.label :image %>
+    <%= file_field_tag "images[]", type: :file, multiple: false %>
   </div>
+
   <div class="field">
     <%= form.label :episodes %>
     <%= form.number_field :episodes, id: :episodes %>

@@ -10,6 +10,9 @@
       <tr>
         <td><%= role.role %></td>
         <td><%= link_to role.person.name, person_path(role.person) %></td>
+        <% if can? :delete, role %>
+          <td><%= link_to 'Destroy', medium_role_path(id: role.id, medium_id: role.medium.id), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger btn-xs' %></td>
+        <% end %>
       </tr>
     <% end %>
   </tbody>

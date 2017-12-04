@@ -5,7 +5,7 @@ class CharactersController < ApplicationController
   # GET /characters
   # GET /characters.json
   def index
-    @characters = Character.all.page params[:page]
+    @characters = Character.order('created_at').page params[:page]
   end
 
   # GET /characters/1
@@ -29,6 +29,11 @@ class CharactersController < ApplicationController
 
     respond_to do |format|
       if @character.save
+
+        if params[:images]
+          params[:images].each { |img| @character.image = Image.new(image: img) }
+        end
+
         format.html { redirect_to @character, notice: 'Character was successfully created.' }
         format.json { render :show, status: :created, location: @character }
       else
@@ -43,6 +48,11 @@ class CharactersController < ApplicationController
   def update
     respond_to do |format|
       if @character.update(character_params)
+
+        if params[:images]
+          params[:images].each { |img| @character.image = Image.new(image: img) }
+        end
+
         format.html { redirect_to @character, notice: 'Character was successfully updated.' }
         format.json { render :show, status: :ok, location: @character }
       else

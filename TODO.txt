@@ -1,0 +1,4 @@
+* No hay documentacion en el repo de sobre el alcance, ni detalles de instalación
+* Proveer un set de datos para probar
+* Muchas validaciones, pueden estar bien, pero se vuelve complicado dar de alta algo por dos razones:
+  * Los errores se muestran arriba y no marcan los campos visualmente. Tratar de hacerlo para que el usuario tenga una simplificacion visual de qué está mal.

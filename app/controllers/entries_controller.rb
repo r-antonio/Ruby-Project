@@ -6,7 +6,7 @@ class EntriesController < ApplicationController
   # GET /entries.json
   def index
     @user = current_user
-    @entries = current_user.entries.all
+    @entries = current_user.entries
     @states_for_select = [['Estado','-1'],['Dropped',1],['Watching',2],['Completed',3]]
   end
 

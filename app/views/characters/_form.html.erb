@@ -21,6 +21,11 @@
     <%= form.text_area :bio, id: :character_bio %>
   </div>
 
+  <div class="field">
+    <%= form.label :image %>
+    <%= file_field_tag "images[]", type: :file, multiple: false %>
+  </div>
+
   <div class="actions">
     <%= form.submit %>
   </div>

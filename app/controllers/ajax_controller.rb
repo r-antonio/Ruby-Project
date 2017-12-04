@@ -5,15 +5,15 @@ class AjaxController < ApplicationController
 
   def change_entry_state
     
-    if not ['2','3'].include?(@entry.state) and params[:state_id] == '2'
-      @entry.date_start = Date.today
-    elsif @entry.state != '3' and params[:state_id] == '3'
-        if @entry.date_start == nil
-          @entry.date_start = Date.today
-        end
-        @entry.date_finish = Date.today
-        @entry.caps = @entry.medium.episodes
-    end
+    #if not ['2','3'].include?(@entry.state) and params[:state_id] == '2'
+    #  @entry.date_start = Date.today
+    #elsif @entry.state != '3' and params[:state_id] == '3'
+    #    if @entry.date_start == nil
+    #      @entry.date_start = Date.today
+    #    end
+    #    @entry.date_finish = Date.today
+    #    @entry.caps = @entry.medium.episodes
+    #end
     @entry.state = params[:state_id]
     if @entry.save
       render json: {code:0,message:'Entry updated'}

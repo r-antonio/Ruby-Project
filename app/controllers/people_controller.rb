@@ -5,7 +5,7 @@ class PeopleController < ApplicationController
   # GET /people
   # GET /people.json
   def index
-    @people = Person.all.page params[:page]
+    @people = Person.order('created_at').page params[:page]
   end
 
   # GET /people/1
@@ -29,6 +29,11 @@ class PeopleController < ApplicationController
 
     respond_to do |format|
       if @person.save
+
+        if params[:images]
+          params[:images].each { |img| @person.image = Image.new(image: img) }
+        end
+
         format.html { redirect_to @person, notice: 'Person was successfully created.' }
         format.json { render :show, status: :created, location: @person }
       else
@@ -43,6 +48,11 @@ class PeopleController < ApplicationController
   def update
     respond_to do |format|
       if @person.update(person_params)
+
+        if params[:images]
+          params[:images].each { |img| @person.image = Image.new(image: img) }
+        end
+
         format.html { redirect_to @person, notice: 'Person was successfully updated.' }
         format.json { render :show, status: :ok, location: @person }
       else

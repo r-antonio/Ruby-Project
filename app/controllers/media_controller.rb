@@ -5,7 +5,7 @@ class MediaController < ApplicationController
   # GET /media
   # GET /media.json
   def index
-    @media = Medium.all.page params[:page]
+    @media = Medium.order('created_at').page params[:page]
   end
 
   # GET /media/1
@@ -36,6 +36,9 @@ class MediaController < ApplicationController
 
     respond_to do |format|
       if @medium.save
+	if params[:images]
+          params[:images].each { |img| @medium.image = Image.new(image: img) }
+        end
         format.html { redirect_to @medium, notice: 'Medium was successfully created.' }
         format.json { render :show, status: :created, location: @medium }
       else
@@ -50,6 +53,9 @@ class MediaController < ApplicationController
   def update
     respond_to do |format|
       if @medium.update(medium_params)
+        if params[:images]
+          params[:images].each { |img| @medium.image = Image.new(image: img) }
+        end
         format.html { redirect_to @medium, notice: 'Medium was successfully updated.' }
         format.json { render :show, status: :ok, location: @medium }
       else
@@ -82,6 +88,6 @@ class MediaController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def medium_params
-      params.require(:medium).permit(:imdb, :title, :rated, :released, :runtime, :synopsis, :airing, :airing_time, :serie, :poster, :episodes)
+      params.require(:medium).permit(:imdb, :title, :rated, :released, :runtime, :synopsis, :airing, :airing_time, :serie, :episodes)
     end
 end
