@@ -23,7 +23,7 @@
         <%= content_tag(:td, entry.rating, id: 'rating'+entry.id.to_s) %>
         <%= content_tag(:td, entry.state, id: 'state'+entry.id.to_s) %>
         <td><%= entry.date_start %></td>
-        <td><%= entry.date_finish %></td>
+        <%= content_tag(:td, entry.date_finish, id: 'date-finish'+entry.id.to_s) %>
         <td>
         <% if current_user == @user %>
         <% if entry.caps != entry.medium.episodes %>
@@ -121,6 +121,8 @@
               td.text(txt.join("/"));
               if(data.code == 4){
                 $('#state'+entry_id).text("3");
+                var d = new Date();
+                $('#date-finish'+entry_id).text(d.getFullYear()+"-"+d.getMonth()+"-"+d.getDate());
                 $('#ac'+entry_id).remove();
               }
               console.log(data);

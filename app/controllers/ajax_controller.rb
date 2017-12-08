@@ -4,16 +4,6 @@ class AjaxController < ApplicationController
   before_action :set_entry, only: [:add_chapter, :edit_entry]
 
   def change_entry_state
-    
-    #if not ['2','3'].include?(@entry.state) and params[:state_id] == '2'
-    #  @entry.date_start = Date.today
-    #elsif @entry.state != '3' and params[:state_id] == '3'
-    #    if @entry.date_start == nil
-    #      @entry.date_start = Date.today
-    #    end
-    #    @entry.date_finish = Date.today
-    #    @entry.caps = @entry.medium.episodes
-    #end
     @entry.state = params[:state_id]
     if @entry.save
       render json: {code:0,message:'Entry updated'}
@@ -23,21 +13,16 @@ class AjaxController < ApplicationController
   end
 
   def add_chapter
-    if @entry.caps < @entry.medium.episodes
-      @entry.caps += 1
-      code = 2
-      if @entry.caps == @entry.medium.episodes
-        @entry.state = '3'
-        @entry.date_finish = Date.today
+    @entry.caps += 1
+    if @entry.save
+      if @entry.state == 3
         code = 4
-      end
-      if @entry.save
-        render json: {code:code,caps: @entry.caps,message:"Entry updated"}
       else
-        render json: {code:-1,message:"Something went wrong"}
+        code = 2
       end
+      render json: {code:code,caps: @entry.caps,message:"Entry updated"}
     else
-      render json: {code:-1,message:'You have watched all the episodes'}
+      render json: {code:-1,message:"Something went wrong"}
     end
   end
 

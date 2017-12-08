@@ -3,6 +3,7 @@ class Entry < ApplicationRecord
   belongs_to :medium
 
   before_validation :validate_state
+  before_validation :check_chapter
 
   validates :user, presence: true
   validates :medium, presence: true
@@ -26,4 +27,14 @@ class Entry < ApplicationRecord
           self.caps = self.medium.episodes
       end
     end
+
+    def check_chapter
+      if (not self.caps_was.nil?) and self.caps_was < self.caps
+        if self.caps == self.medium.episodes
+          self.state = 3
+          self.date_finish = Date.today
+        end
+      end
+    end
+
 end
